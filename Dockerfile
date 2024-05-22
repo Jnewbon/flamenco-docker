@@ -45,7 +45,7 @@ RUN ln -s /opt/flamenco/flamenco-manager.yaml /usr/local/bin/flamenco-manager.ya
 CMD ["flamenco-manager"]
 COPY --link --from=flamenco-downloader /data/flamenco/flamenco-manager /opt/flamenco/
 WORKDIR /workdir
-COPY --link flamenco-manager.yaml .
+#COPY --link flamenco-manager.yaml .
 
 FROM base-runtime AS flamenco-worker
 RUN ln -s /opt/flamenco/flamenco-worker /usr/local/bin/flamenco-worker
