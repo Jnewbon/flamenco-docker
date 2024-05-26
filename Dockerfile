@@ -42,6 +42,7 @@ COPY --link --from=blender-downloader /data/blender /opt/blender
 FROM base-runtime AS flamenco-manager
 RUN ln -s /opt/flamenco/flamenco-manager /usr/local/bin/flamenco-manager
 RUN ln -s /opt/flamenco/flamenco-manager.yaml /usr/local/bin/flamenco-manager.yaml
+RUN chown 1000:1000 /opt/flamenco
 CMD ["flamenco-manager"]
 COPY --link --from=flamenco-downloader /data/flamenco/flamenco-manager /opt/flamenco/
 WORKDIR /workdir
