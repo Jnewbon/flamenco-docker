@@ -22,7 +22,6 @@ WORKDIR /data/flamenco
 ARG FLAMENCO_DOWNLOAD_URL
 RUN curl -sSL "$FLAMENCO_DOWNLOAD_URL" | tar -xzv --strip-components=1
 RUN  ls -la
-USER root
 
 FROM base-downloader AS blender-downloader
 WORKDIR /data/blender
@@ -45,6 +44,7 @@ RUN ln -s /opt/flamenco/flamenco-manager /usr/local/bin/flamenco-manager
 RUN ln -s /opt/flamenco/flamenco-manager.yaml /usr/local/bin/flamenco-manager.yaml
 CMD ["flamenco-manager"]
 COPY --link --from=flamenco-downloader /data/flamenco/flamenco-manager /opt/flamenco/
+RUN chmod +w /opt/flamenco/
 WORKDIR /workdir
 #COPY --link flamenco-manager.yaml .
 
